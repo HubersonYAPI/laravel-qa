@@ -18,6 +18,7 @@
                 </div>
 
                 <div class="card-body">
+                    @include('layouts._messages')
                     @foreach ($questions as $question)
                         <div class="media">
                             <div class="d-flex flex-column counters">
@@ -31,9 +32,14 @@
                                     {{ $question->views ." ". str::plural('view', $question->views) }}
                                 </div>
                             </div>
-                            <div class="media-body">                                
-                                {{-- <h3 class="mt-O"><a href="{{ route('questions.show', $question->id)}} ">{{ $question->title }}</a></h3> --}}
-                                <h3 class="mt-O"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
+                            <div class="media-body">
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
+                                    {{-- <h3 class="mt-O"><a href="{{ route('questions.show', $question->id)}} ">{{ $question->title }}</a></h3> --}}
+                                    <div class="ml-auto">
+                                        <a href="{{ route('questions.edit', $question->id)}}" class="btn btn-sm btn-outline-info">Editer</a>
+                                    </div>
+                                </div> 
                                 <p class="lead">
                                     Posée par
                                     <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
